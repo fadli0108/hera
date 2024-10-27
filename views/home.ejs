@@ -1,0 +1,42 @@
+<section class="container my-4 p-2">
+  <h2>Dokumen Terbaru Untuk Suhaerah</h2>
+  <div class="row justify-content-center">
+    <% documents.forEach(document => { %>
+    <div class="col-lg-3 col-6">
+      <div class="card mb-4">
+        <div class="card-body">
+          <p class="card-text"><%= document.description %></p>
+          <p class="text-muted">Uploaded on: <%= document.uploadDate %></p>
+          <a
+            href="/<%= document.filename %>"
+            class="btn btn-primary"
+            target="_blank"
+            >View PDF</a
+          >
+        </div>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+</section>
+
+<section class="container">
+  <h2>Foto Terbaru Suhaerah</h2>
+  <div class="row justify-content-center">
+    <% images.forEach(image => { %>
+    <div class="col-lg-3 col-6">
+      <div class="image-card card mb-4">
+        <img
+          src="/<%= image.filename %>"
+          class="card-img-top"
+          alt="<%= image.description %>"
+        />
+        <div class="card-body">
+          <p class="card-text"><%= image.description %></p>
+          <p class="text-muted">Uploaded on: <%= image.uploadDate %></p>
+        </div>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+</section>

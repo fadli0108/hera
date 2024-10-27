@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document Upload</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="container my-4 p-2">
+      <!-- Formulir untuk mengunggah dokumen PDF -->
+      <section class="upload-form">
+        <form
+          action="/upload-pdf"
+          method="post"
+          enctype="multipart/form-data"
+          class="form-inline"
+        >
+          <div class="row">
+            <div class="form-group col-lg-5 col-6">
+              <input
+                type="file"
+                name="document"
+                required
+                class="form-control-file"
+              />
+            </div>
+            <div class="form-group col-lg-5 col-6">
+              <input
+                type="text"
+                name="description"
+                placeholder="Description"
+                class="form-control"
+              />
+            </div>
+            <div class="col-lg-2 col-12 mt-lg-0 mt-2">
+              <button type="submit" class="btn btn-primary">Upload</button>
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <!-- Tampilan dokumen yang sudah diunggah -->
+      <section class="gallery container my-4 p-2">
+        <div class="row justify-content-center">
+          <% documents.forEach(document => { %>
+          <div class="col-lg-3 col-6">
+            <div class="card mb-4">
+              <div class="card-body">
+                <p class="card-text"><%= document.description %></p>
+                <p class="text-muted">
+                  Uploaded on: <%= document.uploadDate %>
+                </p>
+                <a
+                  href="/<%= document.filename %>"
+                  class="btn btn-primary"
+                  target="_blank"
+                  >View PDF</a
+                >
+                <form
+                  action="/delete-document/<%= document.id %>"
+                  method="post"
+                  class="mt-2"
+                >
+                  <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
